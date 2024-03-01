@@ -2,6 +2,8 @@ Un exemple d'une page HTML simple qui intègre un script JavaScript pour génér
 Le système APRS est largement utilisé dans la communauté radio amateur pour transmettre des données de télémétrie, de positionnement et d'autres types de données en temps réel.
 En-tête HTML (<head>)
 
+En-tête HTML (<head>)
+
 <meta charset="UTF-8">: Spécifie l'encodage des caractères utilisés, UTF-8, qui inclut la plupart des caractères de toutes les langues écrites, rendant votre page accessible à une audience mondiale.
 
 <meta name="author" content="F4HXN Mansouri Jean-Paul" />) est utile pour spécifier qui est l'auteur du contenu ou du développeur de la page web. C'est une bonne pratique pour le référencement (SEO) et pour fournir des informations claires sur la propriété intellectuelle de votre site web.
