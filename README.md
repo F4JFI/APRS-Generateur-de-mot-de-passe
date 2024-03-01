@@ -17,3 +17,4 @@ Utilisation
 
 L'utilisateur saisit son indicatif dans le champ prévu, clique sur le bouton "Générer Passcode", et le script calcule puis affiche le passcode APRS correspondant. Ce processus permet aux utilisateurs de radio amateur d'obtenir facilement un passcode pour utiliser le réseau APRS.
 
+Plus d'info sur : http://www.f4hxn.fr/aprs-passcode-generator-generateur-mot-de-passe/
