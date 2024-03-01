@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="author" content="F4HXN Mansouri Jean-Paul" />
+<title>Générateur de Passcode APRS</title>
+
+<script>
+function aprspass() {
+    var callsign = document.getElementById('callsign').value;
+    var stophere = callsign.indexOf('-');
+    if (stophere !== -1) callsign = callsign.substring(0, stophere);
+    var realcall = callsign.toUpperCase().substring(0, 10);
+
+    // initialize hash
+    var hash = 0x73e2;
+    var i = 0;
+    var len = realcall.length;
+
+    // hash callsign two bytes at a time
+    while (i < len) {
+        hash ^= realcall.charCodeAt(i) << 8;
+        if (i + 1 < len) { // Make sure not to exceed the length of the callsign
+            hash ^= realcall.charCodeAt(i + 1);
+        }
+        i += 2;
+    }
+
+    // mask off the high bit so number is always positive
+    var passcode = hash & 0x7fff;
+    document.getElementById('passcodeResult').innerText = "Passcode APRS : " + passcode;
+}
+</script>
+</head>
+<body>
+
+<h2>Générateur de Passcode APRS</h2>
+<label for="callsign">Indicatif:</label>
+<input type="text" id="callsign" name="callsign">
+<button onclick="aprspass()">Générer Passcode</button>
+<p id="passcodeResult"></p>
+</body>
+</html>
