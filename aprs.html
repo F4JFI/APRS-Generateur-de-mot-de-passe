@@ -2,8 +2,75 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="author" content="F4HXN Mansouri Jean-Paul" />
+<meta name="author" content="F4HXN Mansouri Jean-Paul & F4JFI JOLIVET Sylvain" />
 <title>Générateur de Passcode APRS</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#passcodeResult {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    font-weight: bold; /* Ajout pour mettre en gras */
+    color: green; /* Ajout pour mettre en vert */
+}
+
+#copyButton {
+    margin-top: 10px;
+}
+
+</style>
 
 <script>
 function aprspass() {
@@ -30,14 +97,34 @@ function aprspass() {
     var passcode = hash & 0x7fff;
     document.getElementById('passcodeResult').innerText = "Passcode APRS : " + passcode;
 }
+
+function copyPasscode() {
+    var passcodeText = document.getElementById('passcodeResult').innerText.split(": ")[1];
+    navigator.clipboard.writeText(passcodeText)
+        .then(() => console.log("Le passcode a été copié avec succès !"))
+        .catch((error) => console.error("Erreur lors de la copie du passcode :", error));
+}
 </script>
 </head>
 <body>
 
-<h2>Générateur de Passcode APRS</h2>
-<label for="callsign">Indicatif:</label>
-<input type="text" id="callsign" name="callsign">
-<button onclick="aprspass()">Générer Passcode</button>
-<p id="passcodeResult"></p>
+<div class="container">
+    <h2>Générateur de Passcode APRS</h2>
+    <label for="callsign">Indicatif:</label>
+    <input type="text" id="callsign" name="callsign">
+    <button onclick="aprspass()">Générer Passcode</button>
+    <p id="passcodeResult"></p>
+    <button id="copyButton" onclick="copyPasscode()">Copier Passcode</button>
+</div>
+
+<script>
+// Gérer la pression de la touche "Entrée" dans le champ de texte
+document.getElementById("callsign").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        aprspass(); // Appeler la fonction pour générer le passcode
+    }
+});
+</script>
+
 </body>
 </html>
